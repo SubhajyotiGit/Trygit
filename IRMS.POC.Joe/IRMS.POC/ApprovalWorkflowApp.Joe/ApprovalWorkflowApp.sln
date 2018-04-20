@@ -1,0 +1,103 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalWorkflowApp", "ApprovalWorkflowApp\ApprovalWorkflowApp.csproj", "{3685FB33-AFC8-4D98-ABF7-DC6590ECFC26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalWorkFlow.Business", "ApprovalWorkFlow.Business\ApprovalWorkFlow.Business.csproj", "{DF474E23-B58C-4769-A81E-AE17D052FCA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalWorkFlow.DataAccess", "ApprovalWorkFlow.DataAccess\ApprovalWorkFlow.DataAccess.csproj", "{1AEC426A-ECCA-47D4-A8D9-599B35623380}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalWorkFlow.BusinessDTOs", "ApprovalWorkFlow.BusinessDTOs\ApprovalWorkFlow.BusinessDTOs.csproj", "{FEED6B66-8BD1-4E44-8C87-3CAF3D0EB359}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalWorkFlow.DataAccessDTOs", "ApprovalWorkFlow.DataAccessDTOs\ApprovalWorkFlow.DataAccessDTOs.csproj", "{61AFBBF4-F1DB-46EE-94D2-B094D41D5537}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalWorkFlow.Entities", "ApprovalWorkFlow.Entities\ApprovalWorkFlow.Entities.csproj", "{0DC92FCE-4ED2-4845-8A97-CC0AB7E41493}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalWorkFlow.Business.Contracts", "ApprovalWorkFlow.Business.Contracts\ApprovalWorkFlow.Business.Contracts.csproj", "{BA21B002-A78C-4535-BDBB-70187249852F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalWorkFlow.DataAccess.Contracts", "ApprovalWorkFlow.DataAccess.Contracts\ApprovalWorkFlow.DataAccess.Contracts.csproj", "{36E4B0AA-C7DB-45A6-B02E-5B4A5A123A95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalWorkFlow.Utility", "ApprovalWorkFlow.Utility\ApprovalWorkFlow.Utility.csproj", "{0E980555-02E9-4F10-9359-603BB562BC00}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3685FB33-AFC8-4D98-ABF7-DC6590ECFC26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3685FB33-AFC8-4D98-ABF7-DC6590ECFC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3685FB33-AFC8-4D98-ABF7-DC6590ECFC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3685FB33-AFC8-4D98-ABF7-DC6590ECFC26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF474E23-B58C-4769-A81E-AE17D052FCA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF474E23-B58C-4769-A81E-AE17D052FCA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF474E23-B58C-4769-A81E-AE17D052FCA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF474E23-B58C-4769-A81E-AE17D052FCA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AEC426A-ECCA-47D4-A8D9-599B35623380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AEC426A-ECCA-47D4-A8D9-599B35623380}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AEC426A-ECCA-47D4-A8D9-599B35623380}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AEC426A-ECCA-47D4-A8D9-599B35623380}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEED6B66-8BD1-4E44-8C87-3CAF3D0EB359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEED6B66-8BD1-4E44-8C87-3CAF3D0EB359}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEED6B66-8BD1-4E44-8C87-3CAF3D0EB359}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEED6B66-8BD1-4E44-8C87-3CAF3D0EB359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61AFBBF4-F1DB-46EE-94D2-B094D41D5537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61AFBBF4-F1DB-46EE-94D2-B094D41D5537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61AFBBF4-F1DB-46EE-94D2-B094D41D5537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61AFBBF4-F1DB-46EE-94D2-B094D41D5537}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DC92FCE-4ED2-4845-8A97-CC0AB7E41493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DC92FCE-4ED2-4845-8A97-CC0AB7E41493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DC92FCE-4ED2-4845-8A97-CC0AB7E41493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DC92FCE-4ED2-4845-8A97-CC0AB7E41493}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA21B002-A78C-4535-BDBB-70187249852F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA21B002-A78C-4535-BDBB-70187249852F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA21B002-A78C-4535-BDBB-70187249852F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA21B002-A78C-4535-BDBB-70187249852F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36E4B0AA-C7DB-45A6-B02E-5B4A5A123A95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36E4B0AA-C7DB-45A6-B02E-5B4A5A123A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36E4B0AA-C7DB-45A6-B02E-5B4A5A123A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36E4B0AA-C7DB-45A6-B02E-5B4A5A123A95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E980555-02E9-4F10-9359-603BB562BC00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E980555-02E9-4F10-9359-603BB562BC00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E980555-02E9-4F10-9359-603BB562BC00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E980555-02E9-4F10-9359-603BB562BC00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 10
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://itsusraw00745:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ApprovalWorkflowApp\\ApprovalWorkflowApp.csproj
+		SccProjectName1 = ApprovalWorkflowApp
+		SccLocalPath1 = ApprovalWorkflowApp
+		SccProjectUniqueName2 = ApprovalWorkFlow.Business\\ApprovalWorkFlow.Business.csproj
+		SccProjectName2 = ApprovalWorkFlow.Business
+		SccLocalPath2 = ApprovalWorkFlow.Business
+		SccProjectUniqueName3 = ApprovalWorkFlow.DataAccess\\ApprovalWorkFlow.DataAccess.csproj
+		SccProjectName3 = ApprovalWorkFlow.DataAccess
+		SccLocalPath3 = ApprovalWorkFlow.DataAccess
+		SccProjectUniqueName4 = ApprovalWorkFlow.BusinessDTOs\\ApprovalWorkFlow.BusinessDTOs.csproj
+		SccProjectName4 = ApprovalWorkFlow.BusinessDTOs
+		SccLocalPath4 = ApprovalWorkFlow.BusinessDTOs
+		SccProjectUniqueName5 = ApprovalWorkFlow.DataAccessDTOs\\ApprovalWorkFlow.DataAccessDTOs.csproj
+		SccProjectName5 = ApprovalWorkFlow.DataAccessDTOs
+		SccLocalPath5 = ApprovalWorkFlow.DataAccessDTOs
+		SccProjectUniqueName6 = ApprovalWorkFlow.Entities\\ApprovalWorkFlow.Entities.csproj
+		SccProjectName6 = ApprovalWorkFlow.Entities
+		SccLocalPath6 = ApprovalWorkFlow.Entities
+		SccProjectUniqueName7 = ApprovalWorkFlow.Business.Contracts\\ApprovalWorkFlow.Business.Contracts.csproj
+		SccProjectName7 = ApprovalWorkFlow.Business.Contracts
+		SccLocalPath7 = ApprovalWorkFlow.Business.Contracts
+		SccProjectUniqueName8 = ApprovalWorkFlow.DataAccess.Contracts\\ApprovalWorkFlow.DataAccess.Contracts.csproj
+		SccProjectName8 = ApprovalWorkFlow.DataAccess.Contracts
+		SccLocalPath8 = ApprovalWorkFlow.DataAccess.Contracts
+		SccProjectUniqueName9 = ApprovalWorkFlow.Utility\\ApprovalWorkFlow.Utility.csproj
+		SccProjectName9 = ApprovalWorkFlow.Utility
+		SccLocalPath9 = ApprovalWorkFlow.Utility
+	EndGlobalSection
+EndGlobal

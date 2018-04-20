@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Audit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="headercls"><h3>All Audit List</h3></div>
+<br />
+<div class="row">
+    <div ng-app="AuditModule">  @*data-ng-init="AuditList=@ViewBag.AuditList" ;*@
+        <div ng-controller="AuditController as data">
+            <div class="table-responsive">
+                @*<table ng-table="p.tableParams" class="table table-bordered table-condensed table-striped" show-filter="true" ng-show="AuditList.length > 0">
+        <tr data-ng-repeat="audit in $data">
+            <td title="'AuditId'" filter="{ AuditId: 'number'}" sortable="'AuditId'">
+                {{audit.AuditId}}
+            </td>
+            <td title="'RequestID'" filter="{ RequestId: 'number'}" sortable="'RequestId'">
+                {{audit.RequestId}}
+            </td>
+            <td title="'User Name'" filter="{ UserName: 'text'}" sortable="'UserName'">
+                {{audit.UserName}}
+            </td>
+            <td title="'Created Date'" filter="{ CreatedON: 'text'}" sortable="'CreatedON'">
+                {{audit.CreatedON}}
+            </td>
+        </tr>
+    </table>class="table-responsive"*@
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Audit Id</th>
+                            <th>Request Id</th>
+                            <th>User Name</th>
+                            <th>Created ON</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-show="data.AuditList.length <= 0"><td colspan="5" style="text-align:center;">Loading new data!!</td></tr>
+                        <tr dir-paginate="audit in data.AuditList|itemsPerPage:data.itemsPerPage" total-items="data.total_count" pagination-id="cust">
+                            <td>{{audit.AuditId}}</td>
+                            <td>{{audit.RequestId}}</td>
+                            <td>{{audit.UserName}}</td>
+                            <td>{{audit.CreatedON}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <dir-pagination-controls max-size="5"
+                                         direction-links="true"
+                                         boundary-links="true"
+                                         on-page-change="data.getData(newPageNumber)" pagination-id="cust">
+                </dir-pagination-controls>
+                <div class="btn-group pull-right">
+                    <button ng-repeat="count in data.PageSettings.counts" type="button" ng-click="data.count(count)" class="btn btn-default" ng-class="{active : data.itemsPerPage === count}">
+                        <span ng-bind="count"></span>
+                    </button>
+                </div>
+              </div>
+                <div ng-show="AuditList.length == 0">No Requests to Display</div>
+            </div>
+    </div>
+</div>
+

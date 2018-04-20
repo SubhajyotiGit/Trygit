@@ -1,0 +1,318 @@
+﻿
+@{
+    ViewBag.Title = "IDS Submit Request Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<div class="headercls" style="height:80px">
+    <div style="float:left"><h3>Hermes IDS Application Access Request Form</h3></div>
+    <div style="float:right; margin-top:20px; padding:10px">
+        <button class="btn btn-info" type="button"  ng-click="OpenHelp()"> <span class="glyphicon glyphicon-question-sign"></span> </button>
+    </div>
+</div>
+<br />*@
+
+<div ng-app="SubmitRequestModule" ng-controller="SubmitRequestController" data-ng-init="UserDetails=@ViewBag.UserDetails" ;>
+
+    <div class='headerIDScls'>
+        <div class='btn-toolbar pull-right'>
+            <div class='btn-group'>
+                <button type='button' class='btn btn-primary' ng-click="OpenHelp()"><span class="glyphicon glyphicon-question-sign"></span></button>
+            </div>
+        </div>
+        <h3>Hermes IDS Access Request Form</h3>
+    </div>
+    <br />
+
+    <script type="text/ng-template" id="HelpModal.html">
+        <div class="modal-header">
+            <h4>Purpose:</h4>
+            <h6>The purpose of this form is to request access for the J&J Users to Hermes Applications.</h6>
+        </div>
+        <div class="modal-body">
+            <div class="well">
+               <b>Instructions:</b> 
+                <ol>
+                    <li>This form is applicable for IDS/internal users who already have J&J Worldwide ID (WWID) and Network ID (NT ID).</li>
+                    <li>Before submitting the form, please make sure to complete all the required application specific trainings in SUMMIT. The training links for SDD are available within the form if you select training completion option as NO.</li>
+                    <li>If you have gone through F2F trainings for SDD, please attach the F2F training transcript from your trainer.</li>
+                    <li>User requesting access to Hermes Applications needs to complete this form and Submit for approval. Alternatively, a functional manager can complete on behalf of the requester and approve the form.</li>
+                </ol>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="cancel()">Close</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3>Enter Your Domain Credentails</h3>
+            <div ng-hide="loginStatus == true">Wrong UserId or Password</div>
+        </div>
+        <form ng-submit="ok()">
+            <div class="modal-body">
+                <div class="well">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="InputUserName">User Name</label>
+                                <input type="text" id="InputUserName" class="form-control" name="username" ng-model="User.UserName">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="Password">Password</label>
+                                <input type="password" id="Password" class="form-control" name="password" ng-model="User.Password">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="ok()">Validate</button>
+                <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            </div>
+        </form>
+    </script>
+
+   
+
+    <div class="well"><label class="clsText">Section A: JNJ  Requester Details</label> 
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="InputName">First Name</label>
+                    <input type="text" id="InputFirstName" class="form-control" name="firstname" ng-model="UserDetails.UserFirstName" readonly>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="InputLastName">Last Name</label>
+                    <input type="text" id="InputLastName" class="form-control" name="lastname" ng-model="UserDetails.UserLastName" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="InputNetworlId">Network Id</label>
+                    <input type="text" id="InputNetworlId" class="form-control" name="networkid" ng-model="UserDetails.UserNetworkId" readonly>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="InputWWID">WWID</label>
+                    <input type="text" id="InputWWID" class="form-control" name="wwid" ng-model="UserDetails.UserWWID" readonly>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="InputWWID">EmailId</label>
+                    <input type="text" id="InputWWID" class="form-control" name="wwid" ng-model="UserDetails.UserEmailId" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <label class="clsText">
+            Section B: Access Requested for:</label>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-true-value="'true'" ng-false-value="'false'" ng-model="IDSSPIsChecked.CheckStatus"><strong>IDS Sharepoint</strong></label>
+                            <ul class="list-group" ng-show="IDSSPIsChecked.CheckStatus =='true'">
+                                <li class="list-group-item">
+                                    <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+                                    IDS document repository <a class="clsAnchorTextFit" href="http://teamsna.jnj.com/prd/hermesids/default.aspx">(http://teamsna.jnj.com/prd/hermesids/default.aspx)</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+                                    Hermes communication <a class="clsAnchorTextFit" href="http://teamsna.jnj.com/prd/hermes/default.aspx">(http://teamsna.jnj.com/prd/hermes/default.aspx)</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+                                    IDS Infrastructure team <a class="clsAnchorTextFit" href="http://teamseu.jnj.com/prd/ifteam/default.aspx">(http://teamseu.jnj.com/prd/ifteam/default.aspx)</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-true-value="'true'" ng-false-value="'false'" ng-model="SASDDIsChecked.CheckStatus"><strong>SAS DD</strong></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-true-value="'true'" ng-false-value="'false'" ng-model="HPALMIsChecked.CheckStatus"><strong>HP ALM</strong></label>
+                            <div ng-show="HPALMIsChecked.CheckStatus =='true'">
+                                <label class="col-md-4 col-sm-4" ng-repeat="n in HPALMIsChecked.ChildCheckStatusList">
+                                    <input type="checkbox" ng-model="n.CheckStatus" ng-value="n.CheckStatus" />{{n.AccessName}}
+                                </label>
+                                <label class="alert-danger">
+                                    (Default Role : IDS GDM/Project Manager)
+                                    (Note: Please complete the HP ALM training modules in eUniversity before requesting access in HP ALM)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-true-value="'true'" ng-false-value="'false'" ng-model="MKSIsChecked.CheckStatus"><strong>MKS Integrity</strong></label>
+                            <div ng-show="MKSIsChecked.CheckStatus =='true'">
+                                <label>Provide the trial names you will be working on.</label>
+                                <tags-input ng-model="MKSIsChecked.TrailNames"></tags-input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-true-value="'true'" ng-false-value="'false'" ng-model="DMCCIsChecked.CheckStatus"><strong>DMCC</strong></label>
+                            <div class="clsPad" ng-show="DMCCIsChecked.CheckStatus =='true'">
+                                <label class="alert-info">Please attach your training transcripts</label>
+                                <form name="myForm">
+                                <input type="file" class="btn btn-info" ngf-select ng-model="file" name="file"
+                                       ngf-accept="'application/zip'" ngf-max-size="1MB" required
+                                       ngf-model-invalid="errorFile">
+                                <i ng-show="myForm.file.$error.maxSize">
+                                    File too large
+                                    {{errorFile.size / 1000000|number:1}}MB: max 1M
+                                </i>
+                                <label class="alert-info">(Total size should be less than 5MB. Please attach zipped documents only)</label>
+                               </br>
+                                <div class="alert-success" ng-show="Message">
+                                        {{Message}}
+                                </div>
+                                </form>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-true-value="'true'" ng-false-value="'false'" ng-model="IDSDropZoneIsChecked.CheckStatus"><strong>IDS Drop Zone</strong></label>
+                            <div ng-show="IDSDropZoneIsChecked.CheckStatus =='true'">
+                                <label class="col-md-4 col-sm-4" ng-repeat="n in IDSDropZoneIsChecked.ChildCheckStatusList">
+                                    <input type="checkbox" ng-model="n.CheckStatus" ng-value="n.CheckStatus" />{{n.AccessName}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            @*<div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label for="InputEnvironment">Environment</label>
+                        <select type="text" id="InputEnvironment" class="form-control dropdown" name="site" ng-model="UserDetails.Environment"
+                                data-ng-options="environment.Type for environment in Environment">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+            </div>*@
+</div>
+
+    @*<span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>*@
+
+    <div class="well">
+        <label class="clsText">
+            Section C: IDS Functional Manager Approval</label>
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group has-feedback">
+                    <label for="InputSearchManager">Search Manager</label>
+                    <input type="text" id="InputSearchManager" style="max-width:100%" class="form-control" name="Searchmanager" ng-model="UserDetails.ManagerNetworkId" placeholder="Search Manager using NTId">
+                    <span ng-click="clearTextMgrNTId()"
+                          class="glyphicon glyphicon-remove form-control-feedback"
+                          style="cursor: pointer; pointer-events: all;"
+                          uib-tooltip="clear">
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                    <button id="btnSearch" class="btn btn-primary" ng-disabled="UserDetails.ManagerNetworkId == null || UserDetails.ManagerNetworkId == ''" ng-click="SearchManager()">Search Your Manager</button>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label for="InputManagerName">Name</label>
+                        <input type="text" id="InputManagerName" style="max-width:100%" class="form-control" name="managername" ng-model="UserDetails.ManagerName" readonly>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label for="InputManagerEmailId">EmailId</label>
+                        <input type="text" id="InputManagerEmailId" style="max-width:100%" class="form-control" name="ManagerEmailid" ng-model="UserDetails.ManagerEmailId" readonly>
+                    </div>
+                </div>
+            </div>
+            @*<div class="row">
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label for="InputUserType">User Type</label>
+                <div isteven-multi-select id="InputUserType" input-model="UserType"
+                     output-model="UserDetails.UserTypes"
+                     button-label="TypeName"
+                     item-label="TypeName"
+                     tick-property="selected"
+                     helper-elements="">
+                 </div>
+            </div>
+        </div>
+    </div> *@
+</div>
+
+    <div class="well">
+        <label class="clsText">
+            Section D: User Certification</label>
+            <p><b>I have received all applicable training and I hereby request access to the System</b></p>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <button class="btn btn-primary" ng-click="open()">Sign Electronically</button>
+                </div>
+            </div>
+     </div>
+
+    <div class="well">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <button ng-model="button" class="btn btn-primary" ng-disabled="Validated" ng-click="SubmitRequest()">Submit Request</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="well" ng-show="IsRequestSubmitted==false">
+        <div class="row">
+            Request Submitted Successfully !!!
+        </div>
+    </div>
+
+ </div>

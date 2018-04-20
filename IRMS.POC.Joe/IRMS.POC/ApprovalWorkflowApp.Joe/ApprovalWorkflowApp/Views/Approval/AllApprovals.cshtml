@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "All ApprovalList Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="headercls"><h3>My All Approval Request List</h3></div>
+<br />
+<div class="row">
+    <div ng-app="MyApprovalModule" data-ng-init="MyApprovalList=@ViewBag.MyApprovalList" ;>
+        <div ng-controller="MyApprovalController as p">
+
+            <script type="text/ng-template" id="moreInfoModal.html">
+                <div class="modal-header">
+                    <h3>More Information</h3>
+                </div>
+                <div class="modal-body" style="overflow-y:auto; height:400px">
+                    <div class="well">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12  well well-color" ng-show="infoDetails.IDSSPEntity.CheckStatus == 'true'">
+                                <div class="form-group">
+                                    <label class="form-control" name="environment">{{infoDetails.IDSSPEntity.AccessName}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12  well well-color" ng-show="infoDetails.SASDDEntity.CheckStatus == 'true'">
+                                <div class="form-group">
+                                    <label class="form-control" name="usertype">{{infoDetails.SASDDEntity.AccessName}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12  well well-color" ng-show="infoDetails.HPALMEntity.CheckStatus == 'true'">
+                                <div class="form-group">
+                                    <label class="form-control" name="requesttype">{{infoDetails.HPALMEntity.AccessName}}</label>
+                                </div>
+                                <div>
+                                    <ul class="list-inline">
+                                        <li ng-repeat="n in infoDetails.HPALMEntity.ChildCheckStatusList |filter:{CheckStatus : 'true'}">
+                                            <p>{{n.AccessName}}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 well well-color" ng-show="infoDetails.MKSIntegrity.CheckStatus == 'true'">
+                                <div class="form-group">
+                                    <label class="form-control" name="site">{{infoDetails.MKSIntegrity.AccessName}}</label>
+                                </div>
+                                <div>
+                                    <ul class="list-inline">
+                                        <li ng-repeat="TrailName in infoDetails.MKSIntegrity.TrailNames">
+                                            <p>{{TrailName.text}}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12  well well-color" ng-show="infoDetails.DMCCEntity.CheckStatus == 'true'">
+                                <div class="form-group">
+                                    <label class="form-control" name="site">{{infoDetails.DMCCEntity.AccessName}}</label>
+                                </div>
+                                <div>
+                                    @{
+                                        var url = Url.Action("DownloadFile", "Home", new { filepath = "{{filepath = infoDetails.DMCCEntity.FilePath}}", filename = "{{filename = infoDetails.DMCCEntity.FileName}}" });
+                                        url = HttpUtility.UrlDecode(url);
+                                    }
+                                    <a class="btn btn-primary" data-ng-href="@url">Download Attachment</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12  well well-color" ng-show="infoDetails.IDSDropZoneEntity.CheckStatus == 'true'">
+                                <div class="form-group">
+                                    <label class="form-control" name="site">{{infoDetails.IDSDropZoneEntity.AccessName}}</label>
+                                </div>
+                                <div>
+                                    <ul class="list-inline">
+                                        <li ng-repeat="n in infoDetails.IDSDropZoneEntity.ChildCheckStatusList |filter:{CheckStatus : 'true'}">
+                                            <p>{{n.AccessName}}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                </div>
+            </script>
+            
+            <div class="table-responsive">
+                <table ng-table="p.tableParams" class="table table-bordered table-condensed table-striped" show-filter="true" ng-show="MyApprovalList.length > 0">
+                    <tr data-ng-repeat="myApproval in $data">
+                        <td title="'RequestID'" filter="{ RequestNo: 'number'}" sortable="'RequestNo'">
+                            {{myApproval.RequestNo}}
+                        </td>
+                        <td title="'Requester'" filter="{ Requester: 'text'}" sortable="'Requester'">
+                            {{myApproval.Requester}}
+                        </td>
+                        <td title="'Requested Date'" filter="{ RequestCreateDT: 'date'}" sortable="'RequestCreateDT'">
+                            {{myApproval.RequestCreateDT}}
+                        </td>
+                        <td title="'Iris TaskId'" filter="{ TaskId: 'text'}" sortable="'TaskId'">
+                            {{myApproval.TaskId}}
+                        </td>
+                        <td title="'Status'" filter="{ RequestStatus: 'text'}" sortable="'RequestStatus'">
+                            {{myApproval.RequestStatus}}
+                        </td>
+                        <td title="'Completion Date'" filter="{ RequestCompleteDt: 'text'}" sortable="'RequestCompleteDt'">
+                            {{myApproval.RequestCompleteDt}}
+                        </td>
+                        @*<td title="'Comments'" filter="{ Comment: 'text'}" sortable="'Comment'">
+                            {{myApproval.Comment}}
+                        </td>*@
+                        <td title="'More Info'">
+                            <button class="btn btn-info" ng-click="open('lg',myApproval.RequestParam)"><span aria-hidden='true' class="glyphicon glyphicon-info-sign"></span></button>
+                        </td>
+                    </tr>
+                </table>
+              </div>
+                <div ng-show="MyApprovalList.length == 0">No Requests to Display</div>
+            </div>
+    </div>
+</div>

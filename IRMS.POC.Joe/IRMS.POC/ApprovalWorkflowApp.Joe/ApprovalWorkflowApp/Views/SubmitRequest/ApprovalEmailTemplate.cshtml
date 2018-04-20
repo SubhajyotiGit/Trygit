@@ -1,0 +1,80 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+    <div>
+        <div style="margin: 30px 30px 0;font: 12px/14px Helvetica; color: #424242;">Hello @ViewData["Approver"],</div>
+    </div>
+    <div>
+        <div style="margin: 30px 30px 0; ">
+            <h3 style="margin: 0px; padding: 0px; font:bold 28px Helvetica; color: #82A0DB;">A request has been submitted! Please visit the link.</h3>
+        </div>
+    </div>
+    <div>&nbsp;</div>
+    <div>
+        <table border="0" style="background: #F8FAF9; margin: 0px 50pt 0px 50pt;width: 550pt; border-radius: 10px; font: 12px/14px Helvetica; color: #424242;">
+            <tbody>
+                <tr>
+                    <td style="padding: 20px 10px 0 30px; ">
+                        <b>Requested for:</b>
+                    </td>
+                    <td colspan="3" style="padding: 20px 30px 0;">
+                        ANIL KUMAR
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 20px 10px 0 30px;">
+                        <b>Request #:</b>
+                    </td>
+                    <td colspan="3" style="padding: 20px 30px 0;">
+                        @*<a href="https://jnjprod.service-now.com/" style="color: #82A0DB; text-decoration: underline; "></a>*@
+                        <a href='@string.Format("http://WIN-HRCH1I5K9R1.wks.jnj.com/Approval/GetRequest/{0}", @ViewData["RequestId"])' style="color:#82A0DB; text-decoration: underline; ">@ViewData["RequestId"]</a>
+                        @*<a href="chromerun//WIN-HRCH1I5K9R1.wks.jnj.com/Approval/GetRequest/" style="color:#82A0DB; text-decoration: underline; ">@ViewData["RequestId"]</a>*@
+                   </td>
+                </tr>
+                <tr>
+                    <td style="padding: 20px 10px 0 30px; ">
+                        <b>Item(s):</b>
+                    </td>
+                    <td colspan="3"
+                        style="padding: 20px 30px 0;">
+                         1 Request for Access Request
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 20px 10px 0 30px;">
+                        <b>Submitted by:</b>
+                    </td>
+                    <td style="padding: 20px 30px 0;">@ViewData["Requester"]</td>
+                </tr>
+                <tr>
+                    <td style="padding: 20px 10px 0 30px; ">
+                        <b>Additional notes:</b>
+                    </td>
+                    <td colspan="3"
+                        style="padding: 20px 30px 0;">
+                        None
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="padding: 20px 10px 0 30px;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <div>
+            <div style="margin: 30px 30px 0; font: bold 12px/14px Helvetica; color: #424242;">Thank you,</div>
+            <div style="margin: 0 30px 0; font: bold 12px/14px Helvetica; color:#424242;">The IDS Support Team</div>
+        </div>
+    </div>
+</body>
+</html>

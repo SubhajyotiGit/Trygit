@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "User Request Page";
+}
+
+    <div class="headercls"><h3>My Request List</h3></div>
+       <br />
+<div class="row">
+    <div ng-app="MyRequestModule" data-ng-init="MyRequestList=@ViewBag.MyRequestList" ;>
+        <div ng-controller="MyRequestController as p" data-ng-init="reloadCheck();">
+
+            <script type="text/ng-template" id="moreInfoModal.html">
+                <div class="modal-header">
+                    <h3>Access Requested For:</h3>
+                </div>
+                <div class="modal-body" style="overflow-y:auto; height:400px">
+                    <div class="well">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12  well well-color" ng-show="infoDetails.IDSSPEntity.CheckStatus == 'true'">
+                                <div class="form-group">
+                                    <label class="form-control" name="environment">{{infoDetails.IDSSPEntity.AccessName}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12  well well-color" ng-show="infoDetails.SASDDEntity.CheckStatus == 'true'">
+                                <div class="form-group">
+                                    <label class="form-control" name="usertype">{{infoDetails.SASDDEntity.AccessName}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12  well well-color" ng-show="infoDetails.HPALMEntity.CheckStatus == 'true'">
+                                <div class="form-group">
+                                    <label class="form-control" name="requesttype">{{infoDetails.HPALMEntity.AccessName}}</label>
+                                </div>
+                                <div>
+                                    <ul class="list-inline">
+                                        <li ng-repeat="n in infoDetails.HPALMEntity.ChildCheckStatusList |filter:{CheckStatus : 'true'}">
+                                            <p>{{n.AccessName}}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 well well-color" ng-show="infoDetails.MKSIntegrity.CheckStatus == 'true'">
+                                <div class="form-group">
+                                    <label class="form-control" name="site">{{infoDetails.MKSIntegrity.AccessName}}</label>
+                                </div>
+                                <div>
+                                    <ul class="list-inline">
+                                        <li ng-repeat="TrailName in infoDetails.MKSIntegrity.TrailNames">
+                                            <p>{{TrailName.text}}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12  well well-color" ng-show="infoDetails.DMCCEntity.CheckStatus == 'true'">
+                                <div class="form-group">
+                                    <label class="form-control" name="site">{{infoDetails.DMCCEntity.AccessName}}</label>
+                                </div>
+                                <div>
+                                    @{
+                                        var url = Url.Action("DownloadFile", "Home", new { filepath = "{{filepath = infoDetails.DMCCEntity.FilePath}}", filename= "{{filename = infoDetails.DMCCEntity.FileName}}" });
+                                        url = HttpUtility.UrlDecode(url);
+                                    }
+                                    <a class="btn btn-primary" data-ng-href="@url">Download Attachment</a>
+                                    @*<p>{{infoDetails.DMCCEntity.FilePath}}</p>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12  well well-color" ng-show="infoDetails.IDSDropZoneEntity.CheckStatus == 'true'">
+                                <div class="form-group">
+                                    <label class="form-control" name="site">{{infoDetails.IDSDropZoneEntity.AccessName}}</label>
+                                </div>
+                                <div>
+                                    <ul class="list-inline">
+                                        <li ng-repeat="n in infoDetails.IDSDropZoneEntity.ChildCheckStatusList |filter:{CheckStatus : 'true'}">
+                                            <p>{{n.AccessName}}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                </div>
+            </script>
+
+            <script type="text/ng-template" id="RequestUpdateModal.html">
+                <div class="modal-header">
+                    <h3>Enter </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="well">
+                        <div class="row">
+                            <div>
+                                <div class="form-group">
+                                    <label for="IrisTaskId">Enter IRIS Task No:</label>
+                                    <input type="text" class="form-control" id="IrisTaskId" ng-model="Request.TaskId" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="ok()">Save</button>
+                    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                </div>
+            </script>
+
+            <script type="text/ng-template" id="LoginModal.html">
+                <div class="modal-header">
+                    <h3>Please validate</h3>
+                    <div ng-hide="loginStatus == true">Wrong UserId or Password</div>
+                </div>
+                <form ng-submit="ok()">
+                    <div class="modal-body">
+                        <div class="well">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="InputUserName">User Name</label>
+                                        <input type="text" id="InputUserName" class="form-control" name="username" ng-model="User.UserName" placeholder="Enter NTID">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="Password">Password</label>
+                                        <input type="password" id="Password" class="form-control" name="password" ng-model="User.Password" placeholder="Enter Password">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" ng-click="ok()">Validate</button>
+                        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                    </div>
+                </form>
+            </script>
+
+            <div class="table-responsive">
+                <table ng-table="p.tableParams" class="table table-bordered table-condensed table-striped" show-filter="true" ng-show="MyRequestList.length > 0">
+                    <tr data-ng-repeat="myRequest in $data">
+                        <td title="'RequestID'" filter="{ RequestNo: 'number'}" sortable="'RequestNo'">
+                            <a ng-href="/Home/GetStatus/{{myRequest.RequestNo}}">{{myRequest.RequestNo}}</a>
+                        </td>
+                        <td title="'Approver'" filter="{ Approver: 'text'}" sortable="'Approver'">
+                            {{myRequest.Approver}}
+                        </td>
+                        <td title="'Requested Date'" filter="{ RequestCreateDT: 'date'}" sortable="'RequestCreateDT'">
+                            {{myRequest.RequestCreateDT}}
+                        </td>
+                        <td title="'Iris TaskId'" filter="{ TaskId: 'text'}" sortable="'TaskId'">
+                            {{myRequest.TaskId}}
+                        </td>
+                        <td title="'Status'" filter="{ RequestStatus: 'text'}" sortable="'RequestStatus'">
+                            {{myRequest.RequestStatus}}
+                        </td>
+                        <td title="'Completion Date'" filter="{ RequestCompleteDt: 'text'}" sortable="'RequestCompleteDt'">
+                            {{myRequest.RequestCompleteDt}}
+                        </td>
+                        @*<td title="'Comments'" filter="{ Comment: 'text'}" sortable="'Comment'">
+                            {{myRequest.Comment}}
+                        </td>*@
+                        <td title="'More Info'">
+                            <button class="btn btn-info" ng-click="open('lg', myRequest.RequestParam)"><span aria-hidden='true' class="glyphicon glyphicon-info-sign"></span></button>
+                        </td>
+                        @*<td title="'Update'">
+                            <button class="btn btn-info" ng-disabled="!(myRequest.RequestStatus == 'Pending With User' && myRequest.TaskId == null)" ng-click="openRequestModal('md',myRequest.RequestNo)"><span aria-hidden='true' class='glyphicon glyphicon-check'></span></button>
+                        </td>*@
+                    </tr>
+                </table>
+            </div>
+                <div ng-show="MyRequestList.length == 0">No Requests to Display</div>
+        </div>
+    </div>
+</div>

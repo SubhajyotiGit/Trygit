@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "GetStatus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="headercls"><h3>Status</h3></div>
+<br />
+<div class="row">
+    <div ng-app="RequestStatusModule" data-ng-init="RequestStatusList=@ViewBag.RequestStatusList" ;>
+        <div ng-controller="RequestStatusController as p">
+            <status-Directive statelist="cashAccountsColumns" count="6"></status-Directive>
+
+            <div class="table-responsive">
+                @*<status-Directive statelist="cashAccountsColumns" count="6"></status-Directive>*@
+                <table ng-table="p.tableParams" class="table table-bordered table-condensed table-striped" ng-show="RequestStatusList.length > 0">
+                    <tr data-ng-repeat="status in $data | filter:isActive">
+                        <td title="'Status'">
+                            {{status.RequestStatusName}}
+                        </td>
+                        <td title="'Completion Date'">
+                            {{status.TransactionDate}}
+                        </td>
+                        <td title="'Comments'">
+                            {{status.Comment}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div ng-show="RequestStatusList.length == 0">No Requests to Display</div>
+        </div>
+    </div>
+</div>

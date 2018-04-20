@@ -1,0 +1,220 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+
+.headercls{
+    padding: 1px;
+    font-size: 18px;
+    background-color: #42b1ca;
+    text-align: center;
+}
+
+.headerIDScls {
+    padding: 3px;
+    font-size: 18px;
+    background-color: #42b1ca;
+    text-align: center;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+/*.dropdown:hover>.dropdown-menu {
+    display: block;
+}*/
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+.navbar-custom {
+	background-color:#9b59b6;
+    color:#ffffff;
+  	border-radius:0;
+}
+  
+.navbar-custom .navbar-nav > li > a {
+  	color:#fff;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #9b59b6;
+	background-color:#9b59b6;
+}
+      
+.navbar-custom .navbar-nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #9b59b6;
+}
+      
+.navbar-custom .navbar-brand {
+  	color:#ffffff;
+}
+.navbar-custom .navbar-toggle {
+  	background-color:#9b59b6;
+}
+.navbar-custom .icon-bar {
+  	/*background-color:#33aa33;*/
+      background-color:#9b59b6;
+}
+.navbar-custom .navbar-text {
+  	color:#ffffff;
+}
+
+.navbar-custom .navbar-nav > .dropdown > a .caret {
+    border-top-color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+#btnNavMenu{
+    background-color:#ddd;
+}
+
+.open .dropdown-menu > li { 
+    background-color: #ddd;
+}
+.navbar-custom .navbar-nav .open .dropdown-menu > li:hover a { 
+   text-decoration:underline;
+}
+/*.navbar-nav .open .dropdown-menu > li > a {
+    line-height: 20px;
+    .navbar-nav
+}*/
+
+.clsText {
+    color: blue;
+}
+
+
+
+.clsPad{
+    padding-left:7%;
+}
+
+.list-inline{display:block;}
+.list-inline li{display:inline-flex;}
+.list-inline li:not(:last-child):after{content:'|'; margin:0 10px;}
+
+.well-color{
+    background-color:RGBA(184,232,199,1);
+}
+
+#btnSearch{
+    margin-top:25px;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+.bs-wizard {margin-top: 40px;}
+
+/*Form Wizard*/
+.bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0;}
+.bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
+.bs-wizard > .bs-wizard-step + .bs-wizard-step {}
+.bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 12px; margin-bottom: 5px;}
+.bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 12px;}
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background: #fbe8aa; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;} 
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 14px; height: 14px; background: #fbbd19; border-radius: 50px; position: absolute; top: 8px; left: 8px; } 
+.bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 8px; box-shadow: none; margin: 20px 0;}
+.bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background: #fbe8aa;}
+.bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {width:100%;}
+.bs-wizard > .bs-wizard-step.active > .progress > .progress-bar {width:50%;}
+.bs-wizard > .bs-wizard-step:first-child.active > .progress > .progress-bar {width:0%;}
+.bs-wizard > .bs-wizard-step:last-child.active > .progress > .progress-bar {width: 100%;}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot {background-color: #f5f5f5;}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot:after {opacity: 0;}
+.bs-wizard > .bs-wizard-step:first-child  > .progress {left: 50%; width: 50%;}
+.bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}
+.bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
+/*END Form Wizard*/
+ 
+@media all and (max-device-width: 768px){
+    h3{font-size: 20px;}
+}
+
+@media all and (max-device-width: 640px){
+     h3{font-size: 15px;}
+     .clsAnchorTextFit{
+          font-size: 12px;
+   }
+     .wizard-margin{
+         margin-top: -34px;
+     }
+}
+
+@media all and (max-device-width: 320px){
+    h3{font-size: 10px;}
+    .clsAnchorTextFit{
+        font-size: 10px;
+   }
+    .wizard-margin{
+         margin-top: -34px;
+     }
+}
+
+
+
+   
